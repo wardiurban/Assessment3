@@ -1,0 +1,31 @@
+package com.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.bean.Product_prj;
+import com.bean.Purchase;
+
+@Repository
+public class PurchaseDao {
+	
+	@Autowired
+	SessionFactory sf;
+	
+//	public List<Purchase> getAllPurchaseByDate(String pudate) {
+	public List<Object[]> getAllPurchaseByDate(String pudate) {
+		Session session = sf.openSession();
+//		Query qry = session.createQuery("select p from Purchase p where p.pudate = :pudate");
+		Query qry = session.createQuery("select s.puid, p.pname, s.pudate from Purchase s, Product_prj p where (s.item = p.pid) and (s.pudate = :pudate)");
+		qry.setParameter("pudate", pudate);
+		//		List<Purchase> listOfPurchase = qry.list();
+		List<Object[]> listOfPurchase = qry.list();
+		return listOfPurchase;
+	}
+
+}

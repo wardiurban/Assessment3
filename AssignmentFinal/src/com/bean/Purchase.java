@@ -1,0 +1,32 @@
+package com.bean;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+@Table(name= "purchase")
+public class Purchase {
+	@Id
+	private int puid;
+	private int item;
+	private String pudate;
+	public int getPuid() {
+		return puid;
+	}
+	public void setPuid(int puid) {
+		this.puid = puid;
+	}
+	public int getItem() {
+		return item;
+	}
+	public void setItem(int item) {
+		this.item = item;
+	}
+	public String getPudate() {
+		return pudate;
+	}
+	public void setPudate(String pudate) {
+		this.pudate = pudate;
+	}
+}
